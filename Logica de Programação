@@ -1,0 +1,260 @@
+package cursoJAVA;
+
+public class Main {
+
+```
+public static void main(String[] args) {
+
+}
+
+```
+
+}
+--------------------------------------------------------------------
+### **Esses são os comandos de inicio do codigo em java**
+
+Para colocar uma string pra respeitar o . como separação de valores em vez do , usa-se
+
+locale.setDefault([Locale.US](http://locale.us/)); - esse usa-se dentro do cochete e para ele funcionar, tem que colocar um import
+
+import java.util.locale;
+
+# **Comandos base para a logica de programação**
+
+Int - Numero inteiro
+Double - numeros quebrados, salarios, preços
+char - usa-se como o genero e sempre com aspas simples ''
+String - para nome - "Lucas Dutra" e sempre com aspas Duplas
+
+Sysout + ctrl space vc completa a string de mostrar na tela
+EX: System.out.Println("NOME = " + nome);
+
+println - escreva pulando a linha
+print - escreva na mesma linha
+
+%s - String - nome
+
+%d - int - inteiro
+
+%f - double - real
+
+%n - Quebra de linha
+
+# **Para colocar mais numeros decimais apos a virgula ou ponto:**
+
+System.out.Println("SALARIO = " + String.format("%.2f", salario));
+
+Para entrada de dados usa-se
+
+sc.nextLine() - para string
+sc.nextInt() - para inteiro
+sc.nextDoble() - para double
+sc.next().charAt(0) - para char
+
+**Definir o sc e Incluir Importação**
+Scanner sc = new Scaner([Systen.in](http://systen.in/));
+import java.util.Scanner
+
+O que é o Scanner? É a possibilidade de incluir dados em uma variavel, posibilidade de digitar e ser vinculada a sua variavel.
+
+Para parar o scanner tem que colocar no final do codigo sc.close();
+
+# **Estrutura if e else;**
+-------------------------------------------------------------------------
+```java
+import java.util.Scanner;
+public class Main {
+public static void main(String[] args) {
+	Scanner sc = new Scanner([System.in](http://system.in/));
+	
+		int hora;
+		System.out.print("Digite uma hora do dia: ");
+		hora = sc.nextInt();
+		
+			if (hora < 12) {
+				System.out.println("Bom dia!");
+		}
+			else {
+				System.out.println("Boa tarde!");
+		}
+		sc.close();
+	}
+}
+```
+--------------------------------------------------------------------
+
+# **Estrutura enquanto**
+Ex: enquanto n digitar 0 ele não para
+--------------------------------------------------------------------
+```java
+int x, soma;
+	soma = 0;
+
+	System.out.println("Digite um numero: ");
+	x = sc.nextInt();
+
+		while (x != 0) {
+			soma = soma + x;
+			System.out.println("Digite Outro Numero: ");
+			x = sc.nextInt();
+		}
+
+		System.out.println("Total = " + soma);
+		sc.close();
+
+```
+--------------------------------------------------------------------
+# Valor de switch, case e break
+
+É como se fosse um if/else
+
+usando o switch voce pode encadear possibilidades como dia da semana
+
+switch (x) {
+
+case 1:
+
+dia = “domingo”;
+
+break;
+
+}
+--------------------------------------------------------------------
+e assim por diante….
+
+quando for acima do pedido podemos colocar o default
+
+default:
+
+dia = “Dia Inválido”;
+
+break;
+
+}
+
+# ESTRUTURA WHILE
+
+Ela executa e volta e quando definir para ela para ela para e pula fora
+
+ex: 
+--------------------------------------------------------------------
+```java
+import java.util.Locale;
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		
+		int x = sc.nextInt();
+		
+		int soma = 0;
+		
+		while (x != 0) {
+			soma = soma + x;
+			x = sc.nextInt();
+		}
+		
+		System.out.println("TOTAL: " + soma);
+		
+		sc.close();
+	}
+
+}
+```
+--------------------------------------------------------------------
+# ESTRUTURA FOR
+--------------------------------------------------------------------
+```java
+import java.util.Locale;
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt();
+		int soma = 0;
+		
+		for (int i=0;i<N;i++) {
+			int x = sc.nextInt();
+			 soma = soma + N;
+		
+		}
+		
+		System.out.println(soma);
+		
+		sc.close();
+	}
+
+}
+```
+--------------------------------------------------------------------
+# Função
+
+Para criar uma função em java precisamos criar uma outra função em vez de ser a public static void main (String[] args)
+
+Como assim?
+
+Podemos criar varias funções e dar ações para elas
+
+Segue o exemplo: 
+--------------------------------------------------------------------
+```java
+package cursoJAVA;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Escreva na tela 3 numeros: ");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		
+		int higher = max(a,b,c);
+		
+		showResult(higher);
+		
+		sc.close();
+	}
+		
+		public static int max(int x, int y, int z) {	
+			int aux;
+			if (x > y && x > z) {
+				aux = x;
+			} else if (y > z) {
+				aux = y;
+			} else {
+				System.out.println("Higher: " + z);
+				aux = z;
+			}
+			return aux;
+	}
+		
+		public static void showResult(int value) {
+			System.out.println("Higher " + value);
+		}
+}
+```
+--------------------------------------------------------------------
+O que significa esse codigo? Ele significa que vou ter 2 funções, uma para a “max” e uma para o “showResult”
+
+A função “max” significa que irei pegar o maior numero entre 3 e definir qual o maior
+
+Trazendo na função se retorno da “showResult”
+
+Pq que no final da função “max” eu não termino com sc.close();?
+
+Pois preciso retornar o valor da “int aux” que eu definir como meus resultados
+
+Pq a função “showResult” é um VOID?
+
+Pois ela é uma função sem retorno, somente para mostar na tela.
