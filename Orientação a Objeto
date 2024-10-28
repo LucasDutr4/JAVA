@@ -1,0 +1,815 @@
+# O que é classe
+
+***É um tipo estruturado que pode conter (membros):***
+• Atributos (dados / campos)
+• Métodos (funções / operações)
+***• A classe também pode prover muitos outros recursos, tais como:***
+• Construtores
+• Sobrecarga
+• Encapsulamento
+• Herança
+• Polimorfismo
+***• Exemplos:***
+• Entidades: Produto, Cliente, Triangulo
+• Serviços: ProdutoService, ClienteService, EmailService, StorageService
+• Controladores: ProdutoController, ClienteController
+• Utilitários: Calculadora, Compactador
+• Outros (views, repositórios, gerenciadores, etc.)
+
+## Como Criar uma classe
+
+O que é classe? é um jeito de vc diminuir o codigo e não precisar de varias variaveis
+
+Segue o exemplo abaixo:
+
+```java
+package Entites;
+
+public class Triangle {
+
+		public double a;
+		public double b;
+		public double c;
+		
+}
+```
+--------------------------------------------------------------------
+O que significa isso: significa que eu posso criar uma classe “triangulo” por exemplo e chamar suas variaveis
+
+Triangle x, y;
+
+x = **new** Triangle();
+
+y = **new** Triangle();
+
+para importar a classe triangle usamos o import: **import Entites.Triangle;**
+
+quando for usar, coloca-se a variavel e seu sgnificado: x.a, x.b, x.c ….
+
+**Com o uso de CLASSE, agora nós temos uma variável composta do tipo "Triangle" para
+representar cada triângulo:**
+
+Triangle x, y;
+
+x = **new** Triangle();
+
+y = **new** Triangle();
+
+Para chamar a nova class usa-se o ponto”.” ex:
+
+x.a
+x.b
+
+x.c e por ai vai.
+
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/2f88b39b-748a-40be-9111-9108811c1b38/3164f2ed-9c1a-4e17-a5dd-20fdaaa066dd/image.png)
+
+Posso trocar o calculp da area do triangulo por uma class dizendo: 
+--------------------------------------------------------------------
+```java
+public double area() {
+double p = (a + b + c) / 2.0;
+return Math.sqrt(p * (p - a) * (p - b) * (p - c));
+```
+
+que seria a double area recebe um double p = (); e retorna um calculo que seria a area do triangulo.
+
+variavel toString
+
+é como se fosse um objeto, podemos chamar o nome do produto
+--------------------------------------------------------------------
+```java
+package application;
+
+public class Product {
+
+	public String name;
+	public double price;
+	public int quantity;
+	
+	public double totalValueInStock() {
+		return price * quantity;
+	}
+	
+	public void addProduct(int quantity) {
+		this.quantity += quantity;
+	}
+	
+	public void removeProduct(int quantity) {
+		this.quantity -= quantity;
+	}
+	
+	**public String toString( ) {
+		return name;
+	}**
+}
+
+```
+--------------------------------------------------------------------
+Então o toString quando colocado para rodar, retornara o nome do produto
+
+Para deixar ele no padrão do system.out.println(), usa-se uma classe toString
+--------------------------------------------------------------------
+```java
+public String toString( ) {
+		return name + " , $ " + String.format("%.2f", price) + ", " + quantity + " unitis, Total: $ " + String.format("%.2f",totalValueInStock());
+	}
+```
+--------------------------------------------------------------------
+# PRIMEIRO SISTEMA DE PRODUTOS
+
+Abaixo segue a parte principal do codigo, o nosso main
+--------------------------------------------------------------------
+```java
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import application.Product;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		
+		Product product = new Product();
+		System.out.println("Enter product Data: ");
+		System.out.print("NAME: ");
+		product.name = sc.nextLine();
+		System.out.println("Price: ");
+		product.price = sc.nextDouble();
+		System.out.println("Quantity in stock: ");
+		product.quantity = sc.nextInt();
+		
+		System.out.println(product);
+		
+		System.out.print("Enter the number of products to be added in stock: ");
+		int quantity = sc.nextInt();
+		product.addProduct(quantity);
+		
+		System.out.println();
+		System.out.println(product);
+		
+		System.out.println("Enter the number of products to be removed from stock: ");
+		quantity = sc.nextInt();
+		product.removeProduct(quantity);
+		
+		System.out.println();
+		System.out.println(product);
+		
+		
+		sc.close();
+	}
+
+}
+
+```
+--------------------------------------------------------------------
+Agora segue a parte da classe entitis/product, que são os produtos
+--------------------------------------------------------------------
+```java
+package application;
+
+public class Product {
+
+	public String name;
+	public double price;
+	public int quantity;
+	
+	public double totalValueInStock() {
+		return price * quantity;
+	}
+	
+	public void addProduct(int quantity) {
+		this.quantity += quantity;
+	}
+	
+	public void removeProduct(int quantity) {
+		this.quantity -= quantity;
+	}
+	
+	public String toString( ) {
+		return name + " , $ " + String.format("%.2f", price) + ", " + quantity + " unitis, Total: $ " + String.format("%.2f",totalValueInStock());
+	}
+}
+
+```
+--------------------------------------------------------------------
+Praticar exercicios, fazer um calculo de area/perimetro/diagonal do retangulo, fazer salario do funcionario e fazer de nota de estudante.
+
+# MEMBROS ESTATICOS
+
+São os membros que não mudam de valor, como o valor de PI, se definirmos ele como statics não poderá alterar o valor dele e contendo um membro estatic, temos que definir todos que o ultilizar como static tambem, segue o exemplo abaixo sem classe
+--------------------------------------------------------------------
+```java
+package application;
+import java.util.Locale;
+import java.util.Scanner;
+	public class Program {
+		**public static final double PI = 3.14159;**
+		
+		public static void main(String[] args) {
+			Locale.setDefault(Locale.US);
+			Scanner sc = new Scanner(System.in);
+
+			System.out.print("Enter radius: ");
+			double radius = sc.nextDouble();
+
+			double c = circumference(radius);
+			double v = volume(radius);
+
+			System.out.printf("Circumference: %.2f%n", c);
+			System.out.printf("Volume: %.2f%n", v);
+			System.out.printf("PI value: %.2f%n", PI);
+		sc.close();
+	}
+		public static double circumference(double radius) {
+		return 2.0 * PI * radius;
+	}
+		public static double volume(double radius) {
+		return 4.0 * PI * radius * radius * radius / 3.0;
+}
+}
+```
+--------------------------------------------------------------------
+Agora segue o exemplo sem metodo statico, criando uma class calculadora no packet util
+--------------------------------------------------------------------
+```java
+package application;
+import java.util.Locale;
+import java.util.Scanner;
+	public class Program {
+		****
+		public static void main(String[] args) {
+			Locale.setDefault(Locale.US);
+			Scanner sc = new Scanner(System.in);
+			
+			Calculator calc = new Calculator;
+			System.out.print("Enter radius: ");
+			double radius = sc.nextDouble();
+
+			double c = calc.circumference(radius);
+			double v = calc.volume(radius);
+
+			System.out.printf("Circumference: %.2f%n", c);
+			System.out.printf("Volume: %.2f%n", v);
+			System.out.printf("PI value: %.2f%n", calc.PI);
+		sc.close();
+	}
+}
+package util;
+	public class Calculator {
+
+			public final double PI = 3.14159;
+
+			public double circumference(double radius) {
+			return 2.0 * PI * radius;
+		}
+		
+			public double volume(double radius) {
+			return 4.0 * PI * radius * radius * radius / 3.0;
+		}
+}
+
+```
+--------------------------------------------------------------------
+Agora ultilizando uma nova classe com membro estatico. Para que serve isso? para quando for calcular por exemplo duas cincurferencias, ao inves de colocar a medida de pi duas vezes, colocamos como estatico e se utiliza em todo codigo, segue o exemplo
+--------------------------------------------------------------------
+```java
+package application;
+import java.util.Locale;
+import java.util.Scanner;
+	public class Program {
+		****
+		public static void main(String[] args) {
+			Locale.setDefault(Locale.US);
+			Scanner sc = new Scanner(System.in);
+		
+			System.out.print("Enter radius: ");
+			double radius = sc.nextDouble();
+
+			**double c = Calculator.circumference(radius);
+			double v = Calculator.volume(radius);**
+
+			System.out.printf("Circumference: %.2f%n", c);
+			System.out.printf("Volume: %.2f%n", v);
+			System.out.printf("PI value: %.2f%n", Calculator.PI);
+		sc.close();
+	}
+}
+package util;
+	public class Calculator {
+
+			public static final double PI = 3.14159;
+
+			public static double circumference(double radius) {
+			return 2.0 * PI * radius;
+		}
+		
+			public static double volume(double radius) {
+			return 4.0 * PI * radius * radius * radius / 3.0;
+		}
+}
+
+```
+--------------------------------------------------------------------
+OBS: quando se ultilizar o metodo static, quando for chamar a classe, não precisa mais do calc.volume. Ultiliza-se agora a Calculator.volume
+
+## Exercicio Conversão do dollar
+
+# CONTRUTORES
+
+° É uma operação especial da classe, que executa no momento da
+instanciação do objeto
+° Usos comuns:
+  • Iniciar valores dos atributos
+  • Permitir ou obrigar que o objeto receba dados / dependências no momento de sua instanciação (injeção de dependência)
+  • Se um construtor customizado não for especificado, a classe disponibiliza o
+construtor padrão:
+   Product p = new Product();
+• É possível especificar mais de um construtor na mesma classe (sobrecarga)
+--------------------------------------------------------------------
+```java
+package entities;
+	public class Product {
+		public String name;
+		public double price;
+		public int quantity;
+			
+	public Product(String name, double price, int quantity) {
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+}
+
+System.out.println("Enter product data: ");
+System.out.print("Name: ");
+String name = sc.nextLine();
+System.out.print("Price: ");
+double price = sc.nextDouble();
+System.out.print("Quantity in stock: ");
+int quantity = sc.nextInt();
+Product product = new Product(name, price, quantity);
+```
+--------------------------------------------------------------------
+Os contrutores servem para que quando definida o nome, preço e quantidade de produtos não fique vago, as vezes sem contrutor podemos ter um produto tv, sem preco e com 1 quantidade ou sem dados de nome.
+--------------------------------------------------------------------
+# SOBRECARGA
+
+° É um recurso que uma classe possui de oferecer mais de uma
+operação com o mesmo nome, porém com diferentes listas de
+parâmetros.
+
+por exemplo comecar um produco com quantidade 0, sendo que tenho o nome tv e o valor 900.00 por exemplo:
+--------------------------------------------------------------------
+```java
+package entities;
+public class Product {
+
+public String name;
+public double price;
+public int quantity;
+
+		public Product() {
+}
+		public Product(String name, double price, int quantity) {
+			this.name = name;
+			this.price = price;
+			this.quantity = quantity;
+}
+		public Product(String name, double price) {
+			this.name = name;
+			this.price = price;
+}
+``--------------------------------------------------------------------`
+
+# ENCAPSULAMENTO
+
+É um princípio que consiste em esconder detalhes de implementação de uma classe, expondo apenas operações seguras e que mantenham os objetos em um estado consistente.
+
+Dica: o objeto deve sempre estar em um estado consistente, e a própria classe deve garantir isso.
+
+O atributo para acessar vai ser o get EX: getName
+
+E para alterar o atributo vai ser o set EX: setName
+--------------------------------------------------------------------
+```java
+private String name;
+private double price;
+
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public double getPrice() {
+	return price;
+}
+public void setPrice(double price) {
+	this.price = price;
+}
+```
+--------------------------------------------------------------------
+FAZER EXERCICIO PARA REVISAR ENCAPSULAMENTO
+
+## TIPOS REFERENCIA vs TIPOS VALOR
+
+**A classe tipo referencia :**
+Variáveis cujo tipo são classes não devem ser entendidas como caixas, mas sim
+“tentáculos” (ponteiros) para caixas
+
+EX:
+Product p1, p2;
+p1 = new Product("TV", 900.00, 0);
+
+p2 = p1;
+p2 = p1;
+
+"p2 passa a apontar para onde
+p1 aponta"
+
+**Classes tipos valor :**
+Em Java, tipos primitivos são tipos valor. Tipos valor são CAIXAS e não ponteiros.
+
+double x, y;
+x = 10;
+y = x;
+y = x;
+
+"y recebe uma CÓPIA de x"
+
+**Valores padrão**
+• Quando alocamos (new) qualquer tipo estruturado (classe ou array), são atribuídos valores padrão aos seus elementos : 
+
+• números: 0
+• boolean: false
+• char: caractere código 0
+• objeto: null
+
+Product p = new Product();
+
+# VETORES
+
+- Em programação, "vetor" é o nome dado a arranjos unidimensionais
+**• Arranjo** (array) é uma estrutura de dados:
+    
+    • Homogênea (dados do mesmo tipo)
+    • Ordenada (elementos acessados por meio de posições)
+    • Alocada de uma vez só, em um bloco contíguo de memória
+    
+    **• Vantagens:**
+    • Acesso imediato aos elementos pela sua posição
+    
+    **• Desvantagens:**
+    • Tamanho fixo
+    • Dificuldade para se realizar inserções e deleções
+    
+
+Segue o exemplo do codigo que eu fiz para listar nomes, idades e alturas de pessoas:
+--------------------------------------------------------------------
+```java
+package application;
+import java.util.Scanner;
+import java.util.Locale;
+import application.Dados;
+
+public class Banco {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Quantas pessoas serão digitadas: ");
+		int n = sc.nextInt();
+		
+		String[] nomes = new String[n];
+		int[] idades = new int[n];
+		double[] alturas = new double[n];
+		
+		for (int i=0; i<n; i++) {
+			System.out.println("Dados da "+ (i+1) +"a pessoa");
+			System.out.println("Nome: ");
+			nomes[i] = sc.next();
+			System.out.println("Idade: ");
+			idades[i] = sc.nextInt();
+			System.out.println("Altura: ");
+			alturas[i] = sc.nextDouble();
+		}
+		
+		double soma = 0.0;
+		for (int i=0; i<n; i++) {
+			soma = soma + alturas[i];
+		}
+		
+		double mediaAlturas = soma / n;
+		System.out.println();
+		System.out.printf("Altura Média: %.2f%n", mediaAlturas);
+		
+		int cont = 0;
+		for (int i=0; i<n; i++) {
+			if(idades[i] < 16) {
+				cont = cont + 1;
+			}
+		}
+		
+		double percent = cont * 100.0 / n;
+		
+		System.out.printf("Pessoas com menos de 16 anos: %.1f%%%n", percent);
+		
+		for (int i=0; i<n; i++) {
+			if(idades[i] < 16) {
+				System.out.println(nomes[i]);
+			}
+		}
+		
+		sc.close();
+	}
+
+}
+
+```
+--------------------------------------------------------------------
+OBS: fazer execicios de vetores.
+
+# Boxing
+
+• É o processo de conversão de um objeto tipo valor para um objeto
+tipo referência compatível:
+
+EX: 
+int x = 20;
+Object obj = x;
+
+int y = (int) obj;
+
+# Wrapper classes
+
+- **São classes equivalentes aos tipos primitivos**
+• Boxing e unboxing é natural na linguagem
+• Uso comum: campos de entidades em sistemas de informação (IMPORTANTE!)
+   * Pois tipos referência (classes) aceitam valor null e usufruem dos recursos OO
+
+# Laço "for each”
+
+Sintaxe opcional e simplificada para percorrer coleções
+Sintaxe:
+--------------------------------------------------------------------
+```java
+for (Tipo apelido : coleção) {
+		<comando 1>
+		<comando 2>
+}
+```
+--------------------------------------------------------------------
+Exemplo de comando for each
+
+```jsx
+String[] vect = new String[] {"Maria", "Bob", "Alex"}
+
+for (String obj : vect) {
+		System.out.println(obj);
+}
+```
+--------------------------------------------------------------------
+# MATRIZES
+
+- Em programação, "matriz" é o nome dado a arranjos bidimensionais
+• Atenção: "vetor de vetores"
+- Arranjo (array) é uma estrutura de dados: • Homogênea (dados do mesmo tipo)
+• Ordenada (elementos acessados por meio de posições)
+• Alocada de uma vez só, em um bloco contíguo de memória
+- Vantagens:
+• Acesso imediato aos elementos pela sua posição
+- Desvantagens:
+• Tamanho fixo
+• Dificuldade para se realizar inserções e deleções
+
+Para criar a matriz ultiliza-se
+--------------------------------------------------------------------
+```java
+int [][] mat = new int[n][n]
+```
+--------------------------------------------------------------------
+Exemplo de codigo:
+--------------------------------------------------------------------
+```java
+	int n = sc.nextInt();
+		int[][] mat = new int[n][n];
+		
+		for(int i=0; i<n; i++) {
+			for (int j=0; j<n; j++) {
+				mat[i][j] = sc.nextInt();
+			}
+		}
+		
+		System.out.println("Main diagonal: ");
+		for (int i=0; i<n; i++) {
+			System.out.print(mat[i][i] + " ");
+		}
+		
+		System.out.println();
+		
+		int count = 0;
+		for (int i=0; i<n; i++) {
+			for(int j=0; j<n; j++) {
+				if (mat[i][j] < 0) {
+					count++;
+				}
+			}
+		}
+		
+		System.out.print("Negative numbers = " + count);
+		
+		sc.close();
+	}	
+}
+```
+--------------------------------------------------------------------
+# DATA-HORA
+
+- Data-[hora] local:
+ano-mês-dia-[hora] sem fuso horário
+[hora] opcional
+- Data-hora global:
+ano-mês-dia-hora com fuso horário
+- Duração:
+tempo decorrido entre duas data-horas
+
+### QUANDO USAR?
+
+- Data-[hora] local:
+Quando o momento exato não interessa a pessoas de outro fuso horário.
+Uso comum: sistemas de região única, Excel.
+Data de nascimento: "15/06/2001"
+Data-hora da venda: "13/08/2022 às 15:32" (presumindo não interessar fuso horário)
+- Data-hora global:
+Quando o momento exato interessa a pessoas de outro fuso horário.
+Uso comum: sistemas multi-região, web.
+Quando será o sorteio? "21/08/2022 às 20h (horário de São Paulo)"
+Quando o comentário foi postado? "há 17 minutos"
+Quando foi realizada a venda? "13/08/2022 às 15:32 (horário de São Paulo)"
+Início e fim do evento? "21/08/2022 às 14h até 16h (horário de São Paulo)"
+
+Exemplo de codigo
+
+```java
+ 		LocalDate d01 = LocalDate.now();
+		LocalDateTime d02 = LocalDateTime.now();
+		Instant d03 = Instant.now();
+```
+
+# ENUMERAÇÃO E COMPOSIÇÃO
+
+º É um tipo especial que serve para especificar de forma literal um
+conjunto de constantes relacionadas
+
+• Palavra chave em Java: enum
+
+• Vantagem: melhor semântica, código mais legível e auxiliado pelo
+compilador
+
+Exemplo de codigo
+
+CLASS Program
+--------------------------------------------------------------------
+```java
+package application;
+
+import java.util.Date;
+import java.util.Locale;
+import java.util.Scanner;
+
+import entities.Order;
+import entities.enums.OrderStatus;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		
+		Order order = new Order(1080, new Date(), OrderStatus.PENDING_PAYMENT);
+		
+		System.out.println(order);
+		
+		sc.close();
+	}	
+}
+```
+--------------------------------------------------------------------
+CLASS Order
+--------------------------------------------------------------------
+```java
+package entities;
+
+import java.util.Date;
+
+import entities.enums.OrderStatus;
+
+public class Order {
+		
+	private Integer id;
+	private Date moment;
+	private OrderStatus satatus;
+
+	public Order() {
+	}
+
+	public Order(Integer id, Date moment, OrderStatus satatus) {
+		this.id = id;
+		this.moment = moment;
+		this.satatus = satatus;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Date getMoment() {
+		return moment;
+	}
+
+	public void setMoment(Date moment) {
+		this.moment = moment;
+	}
+
+	public OrderStatus getSatatus() {
+		return satatus;
+	}
+
+	public void setSatatus(OrderStatus satatus) {
+		this.satatus = satatus;
+	}
+
+	public String toString() {
+		return "Order [id=" + id + ", moment=" + moment + ", satatus=" + satatus + "]";
+	}
+	
+	
+}
+
+```
+--------------------------------------------------------------------
+CLASS OrderStatus
+--------------------------------------------------------------------
+```java
+package entities.enums;
+
+public enum OrderStatus {
+	
+		PENDING_PAYMENT,
+		PROCESSING,
+		SHIPPED,
+		DELIVERED,
+}
+
+```
+--------------------------------------------------------------------
+Conversão de String para enum
+
+Podemos ultilizar o valueOf para fazer a conversão, segue o exemplo abaixo:
+--------------------------------------------------------------------
+```java
+  	OrderStatus os1 = OrderStatus.DELIVERED;
+		
+		OrderStatus os2 = OrderStatus.valueOf("DELIVERED");
+		
+		System.out.println(os1);
+		System.out.println(os2);
+```
+--------------------------------------------------------------------
+# COMPOSIÇÃO
+
+• É um tipo de associação que permite que um objeto contenha outro
+
+• Relação "tem-um" ou "tem-vários”
+
+- Vantagens
+• Organização: divisão de responsabilidades
+• Coesão
+• Flexibilidade
+• Reuso
+- Nota: embora o símbolo UML para composição (todo-parte) seja o diamante preto, neste contexto estamos chamando de composição qualquer associação
+tipo "tem-um" e "tem-vários".
+
+# HERANÇA E POLIMOFIRSMO
+
+O que é herança: 
+
+É um tipo de associação que permite que uma classe herde todos dados e
+comportamentos de outra
+
+Vantagens
+• Reuso
+• Polimorfismo
+
+Sintaxe
+• class A extends B
